@@ -150,22 +150,15 @@ class NN:
                 print('error %-.5f' % error)
 
 
-def demo():
+def demo(pat):
     # Teach network XOR function
-    pat = [
-        [[0,0], [0]],
-        [[0,1], [1]],
-        [[1,0], [1]],
-        [[1,1], [0]]
-    ]
-
+	#moved
     # create a network with two input, two hidden, and one output nodes
     n = NN(2, 2, 1)
     # train it with some patterns
     n.train(pat)
     # test it
     n.test(pat)
-
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ f = opener.open(req)
 games = []
 	
 data = json.load(f)
-backpropnet.demo()
+#backpropnet.demo(pat = [[[0,0], [0]],[[0,1], [1]],[[1,0], [1]],[[1,1],[0]]])
 
 ##get Tupel partizipient_1, partizipient_2
 for i in data.get('matchdata'):
@@ -32,11 +32,17 @@ def getHerokuData(requeststring):
 for i in games:
   urlstring = generalurlstr.format(i[0],i[1])
   #print urlstring
-#  alleBegegnungen = getHerokuData(urlstring)
+  alleBegegnungen = getHerokuData(urlstring)
   historErgebnisse = []
-  print alleBegegnungen
+#  print alleBegegnungen
+  heimspieler = alleBegegnungen.get('matchdata')[0].get('id_team1')
   for j in alleBegegnungen.get('matchdata'):
-    historErgebnisse.append([j.get('id_team1'), j.get('points_team1'), j.get('id_team2'), j.get('points_team2')])
+    if(j.get('points_team1') != -1)
+        if(j.get('id_team1') == heimspieler)
+            historErgebnisse.append([j.get('id_team1'), j.get('points_team1'), j.get('id_team2'), j.get('points_team2')])
+        else
+            historErgebnisse.append([j.get('id_team2'), j.get('points_team2'), j.get('id_team2'), j.get('points_team1')])
   
   print historErgebnisse
+
 
