@@ -9,7 +9,7 @@ f = opener.open(req)
 games = []
 	
 data = json.load(f)
-
+backpropnet.demo()
 
 ##get Tupel partizipient_1, partizipient_2
 for i in data.get('matchdata'):
@@ -32,7 +32,7 @@ def getHerokuData(requeststring):
 for i in games:
   urlstring = generalurlstr.format(i[0],i[1])
   #print urlstring
-  alleBegegnungen = getHerokuData(urlstring)
+#  alleBegegnungen = getHerokuData(urlstring)
   historErgebnisse = []
   print alleBegegnungen
   for j in alleBegegnungen.get('matchdata'):
