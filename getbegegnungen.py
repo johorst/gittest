@@ -1,5 +1,6 @@
 import simplejson as json
 import urllib2
+import backpropnet
 
 ##get alle Begegnungen dieser Spieltag --- parametrierung f spieltag (group_order_id) noetig
 req = urllib2.Request("http://openligadb-json.heroku.com/api/matchdata_by_group_league_saison?group_order_id=16&league_saison=2011&league_shortcut=bl1")
@@ -35,7 +36,7 @@ for i in games:
   historErgebnisse = []
   print alleBegegnungen
   for j in alleBegegnungen.get('matchdata'):
-    historErgebnisse.append([j.get('points_team1'),j.get('points_team2')])
+    historErgebnisse.append([j.get('id_team1'), j.get('points_team1'), j.get('id_team2'), j.get('points_team2')])
   
   print historErgebnisse
 
