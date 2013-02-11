@@ -9,7 +9,6 @@ f = opener.open(req)
 games = []
 	
 data = json.load(f)
-#backpropnet.demo(pat = [[[0,0], [0]],[[0,1], [1]],[[1,0], [1]],[[1,1],[0]]])
 
 ##get Tupel partizipient_1, partizipient_2
 for i in data.get('matchdata'):
@@ -38,16 +37,17 @@ for i in games:
   heimspieler = alleBegegnungen.get('matchdata')[0].get('id_team1')
   for j in alleBegegnungen.get('matchdata'):
     if(j.get('points_team1') != -1):
+    	einErg = []
         if(j.get('id_team1') == heimspieler):
-            historErgebnisse.append([j.get('id_team1'), j.get('id_team2'), j.get('match_date_time')] [j.get('points_team1'), j.get('points_team2')])
+            einErg.append([j.get('id_team1'), j.get('id_team2'), j.get('match_date_time')])
+            einErg.append([j.get('points_team1'), j.get('points_team2')])
         else:
-            historErgebnisse.append([j.get('id_team2'), j.get('id_team1'), j.get('match_date_time')] [j.get('points_team2'), j.get('points_team1')])
+            einErg.append([j.get('id_team2'), j.get('id_team1'), j.get('match_date_time')])
+            einErg.append([j.get('points_team2'), j.get('points_team1')])
+            
+        historErgebnisse.append(einErg)
   
   print historErgebnisse
-  #trainiere mit Team id 1, 2 und Datum als Input und...
-  pat = historErgebnisse[j][0:2]
-  #Ergebnisse als Output
-  pat.append(historErgebnisse[3:4])
-
-
-def trainAndTestNet()
+  
+  pat = historErgebnisse
+  backpropnet.demo(pat)
