@@ -37,10 +37,10 @@ for i in games:
 #  print alleBegegnungen
   heimspieler = alleBegegnungen.get('matchdata')[0].get('id_team1')
   for j in alleBegegnungen.get('matchdata'):
-    if(j.get('points_team1') != -1)
-        if(j.get('id_team1') == heimspieler)
+    if(j.get('points_team1') != -1):
+        if(j.get('id_team1') == heimspieler):
             historErgebnisse.append([j.get('id_team1'), j.get('points_team1'), j.get('id_team2'), j.get('points_team2')])
-        else
+        else:
             historErgebnisse.append([j.get('id_team2'), j.get('points_team2'), j.get('id_team2'), j.get('points_team1')])
   
   print historErgebnisse
