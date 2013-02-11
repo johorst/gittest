@@ -2,6 +2,9 @@ import simplejson as json
 import urllib2
 import backpropnet
 
+def floatMul100(x):
+  return float(x) * 0.001
+
 ##get alle Begegnungen dieser Spieltag --- parametrierung f spieltag (group_order_id) noetig
 req = urllib2.Request("http://openligadb-json.heroku.com/api/matchdata_by_group_league_saison?group_order_id=16&league_saison=2011&league_shortcut=bl1")
 opener = urllib2.build_opener()
@@ -36,18 +39,20 @@ for i in games:
 #  print alleBegegnungen
   heimspieler = alleBegegnungen.get('matchdata')[0].get('id_team1')
   for j in alleBegegnungen.get('matchdata'):
-    if(j.get('points_team1') != -1):
+    if(j.get('points_team1') != '-1'):
     	einErg = []
         if(j.get('id_team1') == heimspieler):
-            einErg.append([j.get('id_team1'), j.get('id_team2'), j.get('match_date_time')])
-            einErg.append([j.get('points_team1'), j.get('points_team2')])
+            einErg.append(map(floatMul100, [(j.get('id_team1')), (j.get('id_team2'))]))
+            einErg.append(map(floatMul100, [(j.get('points_team1')), (j.get('points_team2'))]))
         else:
-            einErg.append([j.get('id_team2'), j.get('id_team1'), j.get('match_date_time')])
-            einErg.append([j.get('points_team2'), j.get('points_team1')])
+            einErg.append(map(floatMul100, [(j.get('id_team2')), (j.get('id_team1'))]))
+            einErg.append(map(floatMul100, [(j.get('points_team2')), (j.get('points_team1'))]))
             
+        print einErg
         historErgebnisse.append(einErg)
   
   print historErgebnisse
   
   pat = historErgebnisse
   backpropnet.demo(pat)
+

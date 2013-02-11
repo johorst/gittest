@@ -154,7 +154,7 @@ def demo(pat):
     # Teach network XOR function
 	#moved
     # create a network with 3 input, 4 hidden, and 2 output nodes
-    n = NN(3, 4, 2)
+    n = NN(2, 3, 2)
     # train it with some patterns
     n.train(pat)
     # test it
