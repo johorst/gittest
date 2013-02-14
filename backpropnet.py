@@ -11,6 +11,10 @@ import string
 
 random.seed(0)
 
+# get goals of both neurons
+def torvorhersage():
+  return[str(self.wo[0])[4],str(self.wo[1])[4]]
+
 # calculate a random number where:  a <= rand < b
 def rand(a, b):
     return (b-a)*random.random() + a

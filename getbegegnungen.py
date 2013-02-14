@@ -2,6 +2,8 @@ import simplejson as json
 import urllib2
 import backpropnet
 
+vorhersage = []
+
 def floatMul100(x):
   return float(x) * 0.001
 
@@ -10,12 +12,14 @@ req = urllib2.Request("http://openligadb-json.heroku.com/api/matchdata_by_group_
 opener = urllib2.build_opener()
 f = opener.open(req)
 games = []
+game_ids = []
 	
 data = json.load(f)
 
 ##get Tupel partizipient_1, partizipient_2
 for i in data.get('matchdata'):
  games.append([i.get('id_team1'),i.get('id_team2')])
+ game_ids.append(i.get('match_id'))
  #print i.get('id_team1')
  #print i.get('id_team2')
  
@@ -30,8 +34,9 @@ def getHerokuData(requeststring):
  f = opener.open(req)
  data = json.load(f)
  return data
-
+inti = -1
 for i in games:
+  inti += 1
   urlstring = generalurlstr.format(i[0],i[1])
   #print urlstring
   alleBegegnungen = getHerokuData(urlstring)
@@ -52,7 +57,8 @@ for i in games:
         historErgebnisse.append(einErg)
   
   print historErgebnisse
-  
   pat = historErgebnisse
   backpropnet.demo(pat)
+  vorhersage.append([game_ids[inti],backpropnet.torvorhersage])
 
+print vorhersage
