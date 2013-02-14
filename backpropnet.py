@@ -135,6 +135,9 @@ class NN:
         print('Output weights:')
         for j in range(self.nh):
             print(self.wo[j])
+            
+    def getTore(self, tupel):
+        return str(self.update(tupel))[3]
 
     def train(self, patterns, iterations=1000, N=0.5, M=0.1):
         # N: learning rate
@@ -159,6 +162,7 @@ def demo(pat):
     n.train(pat)
     # test it
     n.test(pat)
+    n.getTore([0.55, 0.66])
 
 
 if __name__ == '__main__':
