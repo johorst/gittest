@@ -11,10 +11,6 @@ import string
 
 random.seed(0)
 
-# get goals of both neurons
-def torvorhersage():
-  return[str(self.wo[0])[4],str(self.wo[1])[4]]
-
 # calculate a random number where:  a <= rand < b
 def rand(a, b):
     return (b-a)*random.random() + a
@@ -141,7 +137,7 @@ class NN:
             print(self.wo[j])
             
     def getTore(self, tupel):
-        return str(self.update(tupel))[3]
+        return [str(self.update(tupel)[0])[4], str(self.update(tupel)[1])[4]]
 
     def train(self, patterns, iterations=1000, N=0.5, M=0.1):
         # N: learning rate
@@ -166,7 +162,7 @@ def demo(pat):
     n.train(pat)
     # test it
     n.test(pat)
-    n.getTore([0.55, 0.66])
+    # n.getTore([0.55, 0.66])
 
 
 if __name__ == '__main__':

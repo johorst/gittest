@@ -15,6 +15,7 @@ games = []
 game_ids = []
 	
 data = json.load(f)
+print data
 
 ##get Tupel partizipient_1, partizipient_2
 for i in data.get('matchdata'):
@@ -34,6 +35,7 @@ def getHerokuData(requeststring):
  f = opener.open(req)
  data = json.load(f)
  return data
+
 inti = -1
 for i in games:
   inti += 1
@@ -58,7 +60,15 @@ for i in games:
   
   print historErgebnisse
   pat = historErgebnisse
-  backpropnet.demo(pat)
-  vorhersage.append([game_ids[inti],backpropnet.torvorhersage])
+  #def demo(pat):
+  # Teach network XOR function
+  #moved
+  # create a network with 3 input, 4 hidden, and 2 output nodes
+#  n = backpropnet.NN(2, 3, 2)
+  # train it with some patterns
+#  n.train(pat)
+  # test it
+#  n.test(pat)
+#  vorhersage.append([game_ids[inti],n.getTore(pat[0][0])])
 
-print vorhersage
+#print vorhersage
